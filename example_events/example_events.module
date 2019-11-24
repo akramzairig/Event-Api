@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * Implements hook_ENTITY_insert()
+ */
+function example_events_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityType()->id() == 'node' && $entity->bundle() == "article") {
+    $entity->setTitle($entity->label() . ' ' . date("Y/m/d"));
+    $entity->save();
+  }
+}
